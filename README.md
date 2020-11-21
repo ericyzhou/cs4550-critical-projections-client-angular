@@ -1,4 +1,4 @@
-# Cs4550CriticalProjectionsClientAngular
+# Critical Projections
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
 
