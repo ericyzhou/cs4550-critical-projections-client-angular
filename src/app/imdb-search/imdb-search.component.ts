@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {IMDBSearchService} from '../../services/IMDBSearchService';
 
 @Component({
@@ -8,18 +8,15 @@ import {IMDBSearchService} from '../../services/IMDBSearchService';
   styleUrls: ['./imdb-search.component.css']
 })
 export class ImdbSearchComponent implements OnInit {
-  searched = false;
-  searchTerm = '';
-  results: any;
-  constructor(private activatedRoute: ActivatedRoute,
-              private imdbService: IMDBSearchService) { }
 
-  ngOnInit(): void {
-  }
+  searchTerm = '';
+
+  constructor(private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   searchMovie = () => {
-    this.imdbService.findMovieByTitle(this.searchTerm)
-      .then(results => this.results = results);
+    this.router.navigate([`/search/${this.searchTerm}`])
+      .then();
   }
 
   handleKeyPress = (target: { charCode: number; }) => {
@@ -27,5 +24,14 @@ export class ImdbSearchComponent implements OnInit {
       this.searchMovie();
     }
   }
+
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      if (params.movieTitle) {
+        this.searchTerm = params.movieTitle;
+      }
+    });
+  }
+
 
 }

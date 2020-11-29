@@ -8,13 +8,15 @@ import {IMDBSearchService} from '../services/IMDBSearchService';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { ImdbSearchComponent } from './imdb-search/imdb-search.component';
 import {FormsModule} from '@angular/forms';
+import { ImdbSearchResultComponent } from './imdb-search-result/imdb-search-result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviePageComponent,
     ReviewsComponent,
-    ImdbSearchComponent
+    ImdbSearchComponent,
+    ImdbSearchResultComponent
   ],
   imports: [
     BrowserModule,

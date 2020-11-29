@@ -1,0 +1,36 @@
+<div>
+  <div [hidden]="!searched">
+    <div [ngSwitch]="results.Response">
+      <div *ngSwitchCase="'True'">
+        <h6>{{results.Search.length}} results found</h6>
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Title</th>
+            <th scope="col">Year Released</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let result of results.Search">
+            <td>
+              <img class="result-image" [src]="result.Poster"/>
+            </td>
+            <td>
+              <a routerLink="/search/movies/{{result.imdbID}}/reviews">
+                {{result.Title}}
+              </a>
+            </td>
+            <td>{{result.Year}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngSwitchCase="'False'">
+        <h3>
+          No results
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>

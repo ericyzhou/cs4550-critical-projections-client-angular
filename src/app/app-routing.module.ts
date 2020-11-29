@@ -7,7 +7,8 @@ import {ImdbSearchComponent} from './imdb-search/imdb-search.component';
 const routes: Routes = [
   {path: 'search/movies/:movieId', component: MoviePageComponent},
   {path: 'search/movies/:movieId/reviews', component: ReviewsComponent},
-  {path: 'search', component: ImdbSearchComponent}
+  {path: 'search', component: ImdbSearchComponent},
+  {path: 'search/:movieTitle', component: ImdbSearchComponent},
 ];
 
 @NgModule({
