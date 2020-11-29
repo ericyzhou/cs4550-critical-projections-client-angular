@@ -9,6 +9,7 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { ImdbSearchComponent } from './imdb-search/imdb-search.component';
 import {FormsModule} from '@angular/forms';
 import { ImdbSearchResultComponent } from './imdb-search-result/imdb-search-result.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ImdbSearchResultComponent } from './imdb-search-result/imdb-search-resu
     MoviePageComponent,
     ReviewsComponent,
     ImdbSearchComponent,
-    ImdbSearchResultComponent
+    ImdbSearchResultComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
