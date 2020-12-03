@@ -10,6 +10,8 @@ import { ImdbSearchComponent } from './imdb-search/imdb-search.component';
 import {FormsModule} from '@angular/forms';
 import { ImdbSearchResultComponent } from './imdb-search-result/imdb-search-result.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { HomePageComponent } from './home-page/home-page.component';
     ReviewsComponent,
     ImdbSearchComponent,
     ImdbSearchResultComponent,
-    HomePageComponent
+    HomePageComponent,
+    LoginPageComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,
