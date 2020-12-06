@@ -10,6 +10,8 @@ import { ImdbSearchComponent } from './imdb-search/imdb-search.component';
 import {FormsModule} from '@angular/forms';
 import { ImdbSearchResultComponent } from './imdb-search-result/imdb-search-result.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import {ReviewService} from '../services/review-service';
+import {CommentService} from '../services/comment-service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,11 @@ import { HomePageComponent } from './home-page/home-page.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [IMDBSearchService],
+  providers: [
+    IMDBSearchService,
+    ReviewService,
+    CommentService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
