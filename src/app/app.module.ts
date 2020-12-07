@@ -32,6 +32,6 @@ import {CommentService} from '../services/comment-service';
     ReviewService,
     CommentService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

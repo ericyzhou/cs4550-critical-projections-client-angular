@@ -10,10 +10,10 @@ export class CommentService {
     fetch(`http://localhost:8080/api/users/${uid}/comments`)
       .then(response => response.json())
 
-  createComment = (comment: any) =>
+  createComment = (reviewId: number, body: string) =>
     fetch(`http://localhost:8080/api/comments`, {
       method: 'POST',
-      body: JSON.stringify(comment),
+      body: JSON.stringify({reviewId, body}),
       headers: {
         'content-type': 'application/json'
       }

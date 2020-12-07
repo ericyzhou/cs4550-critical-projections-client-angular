@@ -10,10 +10,10 @@ export class ReviewService {
     fetch(`http://localhost:8080/api/users/${uid}/reviews`)
       .then(response => response.json())
 
-  createReview = (review: any) =>
+  createReview = (title: string, body: string, rating: number, movieId: string) =>
     fetch(`http://localhost:8080/api/reviews`, {
       method: 'POST',
-      body: JSON.stringify(review),
+      body: JSON.stringify({movieId, rating, Title: title, Body: body}),
       headers: {
         'content-type': 'application/json'
       }
