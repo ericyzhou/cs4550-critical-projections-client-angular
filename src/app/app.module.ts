@@ -12,6 +12,7 @@ import { ImdbSearchResultComponent } from './imdb-search-result/imdb-search-resu
 import { HomePageComponent } from './home-page/home-page.component';
 import {ReviewService} from '../services/review-service';
 import {CommentService} from '../services/comment-service';
+import { ReviewMediaComponent } from './review-media/review-media.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {CommentService} from '../services/comment-service';
     ReviewsComponent,
     ImdbSearchComponent,
     ImdbSearchResultComponent,
-    HomePageComponent
+    HomePageComponent,
+    ReviewMediaComponent
   ],
   imports: [
     BrowserModule,

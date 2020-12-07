@@ -1,0 +1,60 @@
+<li key='us' class="media my-4">
+  <img src="https://i.stack.imgur.com/l60Hf.png"
+       class="mr-3" alt="..." height="80" width="80"/>
+  <div class="media-body">
+    <div>
+      <h3 class="mt-0 mb-1" [hidden]="this.editting">{{review.rating}}
+        <button class="btn btn-danger float-right btn-sm"
+                (click)="this.deleteReview()">Delete</button>
+        <button class="btn btn-success float-right btn-sm"
+                (click)="this.editReview()">Edit</button></h3>
+      <h3 [hidden]="!this.editting">
+        <select name="inputScore" id="editScore" class="form-control" [(ngModel)]="this.rating">
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+        <button class="btn btn-success float-right btn-sm"
+                (click)="this.editReview()">Save</button>
+      </h3>
+      <h5 class="mt-0 mb-1">{{review.title}}</h5>
+      {{review.body}}
+    </div>
+    <i style="color: black" class="fa fa-thumbs-up"></i>
+    {{review.likes}}
+    <i style="color: black" class="fa fa-thumbs-down"></i>
+    <ul class="list-unstyled">
+      <div class="media mt-3"
+           key="us" *ngFor="let comment of this.comments">
+        <img src="https://i.stack.imgur.com/l60Hf.png"
+             class="mr-3" alt="..." height="40" width="40"/>
+        <div class="media-body">
+          <div>
+            <h5><i class="fa fa-trash float-right"
+                   (click)="this.deleteComment(comment.id)"></i></h5>
+            {{comment.body}}
+          </div>
+          <i style="color: black" class="fa fa-thumbs-up"></i>
+          {{comment.likes}}
+          <i style="color: black" class="fa fa-thumbs-down"></i>
+        </div>
+      </div>
+    </ul>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Add a comment" aria-label="Add a comment"
+             aria-describedby="basic-addon2" [(ngModel)]="this.newComment">
+      <div class="input-group-append">
+        <button class="btn btn-outline-primary" type="button"
+                (click)="this.postComment()">Post</button>
+      </div>
+    </div>
+  </div>
+</li>
+
