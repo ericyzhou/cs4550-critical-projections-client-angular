@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePageComponent implements OnInit {
 
+  user = {username: '', password: '', email: '', role: ''};
+
   constructor() { }
 
   ngOnInit(): void {
