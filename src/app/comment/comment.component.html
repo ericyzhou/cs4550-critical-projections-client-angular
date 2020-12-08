@@ -1,0 +1,15 @@
+<div class="media mt-3"
+     key="us">
+  <img src="https://i.stack.imgur.com/l60Hf.png"
+       class="mr-3" alt="..." height="40" width="40"/>
+  <div class="media-body">
+    <div>
+      <h5><i class="fa fa-trash float-right"
+             (click)="this.deleteComment()"></i></h5>
+      {{this.comment.body}}
+    </div>
+    <i style="color: black" class="fa fa-thumbs-up"></i>
+    {{this.comment.likes}}
+    <i style="color: black" class="fa fa-thumbs-down"></i>
+  </div>
+</div>
