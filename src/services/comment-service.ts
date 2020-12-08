@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class CommentService {
-  fetchCommentsForReview = (rid: any) =>
-    fetch(`http://localhost:8080/api/reviews/${rid}/comments`)
+  fetchCommentsForReview = (rid: any, count: number) =>
+    fetch(`http://localhost:8080/api/reviews/${rid}/comments/${count}`)
       .then(response => response.json())
 
   fetchCommentsForUser = (uid: any) =>

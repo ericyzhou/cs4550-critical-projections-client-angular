@@ -2,8 +2,16 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class ReviewService {
-  fetchReviewsForMovie = (mid: any) =>
-    fetch(`http://localhost:8080/api/movies/${mid}/reviews`)
+  fetchReviewsForMovie = (mid: any, count: number) =>
+    fetch(`http://localhost:8080/api/movies/${mid}/reviews/${count}`)
+      .then(response => response.json())
+
+  fetchCriticReviewsForMovie = (mid: any, count: number) =>
+    fetch(`http://localhost:8080/api/movies/${mid}/reviews/critic/${count}`)
+      .then(response => response.json())
+
+  fetchUserReviewsForMovie = (mid: any, count: number) =>
+    fetch(`http://localhost:8080/api/movies/${mid}/reviews/user/${count}`)
       .then(response => response.json())
 
   fetchReviewsForUser = (uid: any) =>

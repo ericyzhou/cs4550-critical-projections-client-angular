@@ -13,13 +13,15 @@ export class ReviewMediaComponent implements OnInit {
   editing = false;
   comments: any[] = [];
   newComment = '';
+  commentsToShow = 0;
 
   constructor(private reviewService: ReviewService,
               private commentService: CommentService) { }
 
   ngOnInit(): void {
     if (typeof this.review !== 'undefined') {
-      this.commentService.fetchCommentsForReview(this.review.id)
+      this.commentsToShow = 0;
+      this.commentService.fetchCommentsForReview(this.review.id, this.commentsToShow)
         .then(comments => this.comments = comments);
     }
   }
@@ -33,11 +35,6 @@ export class ReviewMediaComponent implements OnInit {
     this.editing = true;
   }
 
-  deleteComment = (cid: any) => {
-    this.commentService.deleteComment(cid)
-      .then(status => alert(`Deleted review ${cid}`));
-  }
-
   postComment = () => {
     this.commentService.createComment(this.review.id, this.newComment)
       .then(response => this.comments.push(response));
@@ -49,5 +46,20 @@ export class ReviewMediaComponent implements OnInit {
     this.reviewService.updateReview(this.review)
       .then(response => this.review = response)
       .then(r => this.editing = false);
+  }
+
+  moreComments = () => {
+    this.commentsToShow += 3;
+    this.commentService.fetchCommentsForReview(this.review.id, this.commentsToShow)
+      .then(comments => this.comments = comments);
+  }
+
+  fewerComments = () => {
+    this.commentsToShow -= 3;
+    if (this.commentsToShow < 0) {
+      this.commentsToShow = 0;
+    }
+    this.commentService.fetchCommentsForReview(this.review.id, this.commentsToShow)
+      .then(comments => this.comments = comments);
   }
 }

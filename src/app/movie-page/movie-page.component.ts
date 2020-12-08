@@ -25,7 +25,7 @@ export class MoviePageComponent implements OnInit {
       if (typeof movieId !== 'undefined') {
         this.imdbService.findMovieById(movieId)
           .then(movie => this.movie = movie);
-        this.reviewService.fetchReviewsForMovie(movieId)
+        this.reviewService.fetchReviewsForMovie(movieId, 5)
           .then(reviews => this.reviews = reviews);
       }
     });

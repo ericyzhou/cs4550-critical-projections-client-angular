@@ -49,6 +49,9 @@
     <ul class="list-unstyled">
       <app-comment *ngFor="let comment of this.comments" [comment]="comment"></app-comment>
     </ul>
+    <button class="btn btn-link" [hidden]="this.commentsToShow > 0" (click)="this.moreComments()">Show Comments</button>
+    <button class="btn btn-link" [hidden]="this.commentsToShow == 0" (click)="this.moreComments()">More Comments</button>
+    <button class="btn btn-link" [hidden]="this.commentsToShow == 0" (click)="this.fewerComments()">Fewer Comments</button>
     <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="Add a comment" aria-label="Add a comment"
              aria-describedby="basic-addon2" [(ngModel)]="this.newComment">
