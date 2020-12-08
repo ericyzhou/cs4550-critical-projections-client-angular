@@ -38,41 +38,40 @@
     </ul>
   </div>
   <div class="container">
+    <h1>Leave A Review</h1>
+    <form>
+      <div class="form-row">
+        <div class="col">
+          <label for="inputTitle">Title</label>
+          <input name="inputTitle" id="inputTitle" type="text" class="form-control" placeholder="Title"
+          [(ngModel)]="this.title">
+        </div>
+        <div class="col">
+          <label for="inputScore">Score</label>
+          <select name="inputScore" id="inputScore" class="form-control" [(ngModel)]="this.rating">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+      </div>
+      <label for="inputReview">Review</label>
+      <textarea name="inputReview" id="inputReview" type="text" class="form-control" placeholder="Review"
+      [(ngModel)]="this.body"></textarea>
+    </form>
+    <button class="btn btn-success" (click)="this.postReview()">Post</button>
+  </div>
+  <div class="container">
     <h1>Top Reviews</h1>
     <ul class="list-unstyled">
-      <li class="media">
-        <img src="https://i.stack.imgur.com/l60Hf.png"
-             class="align-self-center mr-3" alt="..." height="80" width="80"/>
-        <div class="media-body">
-          <h3 class="mt-0 mb-1">1.6</h3>
-          <h5 class="mt-0 mb-1">Meh... The Boat Sinks</h5>
-          What the title says... pretty boring until that part. Some kind
-          of love story or something? Idk, I fell asleep.
-        </div>
-      </li>
-      <li class="media my-4">
-        <img src="https://i.stack.imgur.com/l60Hf.png"
-             class="align-self-center mr-3" alt="..." height="80" width="80"/>
-        <div class="media-body">
-          <h3 class="mt-0 mb-1">9.8</h3>
-          <h5 class="mt-0 mb-1">Made Me Feel Emotion Again</h5>
-          When I say that this movie changed my life, I mean it!  I never thought
-          that I would cry at the theater but it was like there were thousands of
-          ninjas cutting onions.  So moving and touching.  A must watch for any
-          fans of boat romance!
-        </div>
-      </li>
-      <li class="media">
-        <img src="https://i.stack.imgur.com/l60Hf.png"
-             class="align-self-center mr-3" alt="..." height="80" width="80"/>
-        <div class="media-body">
-          <h3 class="mt-0 mb-1">5.6</h3>
-          <h5 class="mt-0 mb-1">SCARY!!!</h5>
-          Never going on a cruise again!  They have this listed as a romance/drama.
-          I mean it when I say that this was some of the scariest $#*% that I have ever seen.
-          Legitimately caused me Thalassophobia.  I hate you James Cameron!
-        </div>
-      </li>
+      <app-review-media *ngFor="let review of this.reviews" [review] = review></app-review-media>
     </ul>
     <a routerLink="/search/movies/{{movie.imdbID}}/reviews" >See more</a>
   </div>

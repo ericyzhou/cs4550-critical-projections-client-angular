@@ -12,6 +12,10 @@ import { ImdbSearchResultComponent } from './imdb-search-result/imdb-search-resu
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import {ReviewService} from '../services/review-service';
+import {CommentService} from '../services/comment-service';
+import { ReviewMediaComponent } from './review-media/review-media.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +26,20 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     ImdbSearchResultComponent,
     HomePageComponent,
     LoginPageComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    ReviewMediaComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [IMDBSearchService],
-  bootstrap: [AppComponent]
+  providers: [
+    IMDBSearchService,
+    ReviewService,
+    CommentService
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

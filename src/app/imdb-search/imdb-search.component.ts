@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {IMDBSearchService} from '../../services/IMDBSearchService';
 
 @Component({
   selector: 'app-imdb-search',

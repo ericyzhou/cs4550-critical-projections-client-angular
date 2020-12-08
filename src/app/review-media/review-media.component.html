@@ -1,0 +1,65 @@
+<li key='us' class="media my-4">
+  <img src="https://i.stack.imgur.com/l60Hf.png"
+       class="mr-3" alt="..." height="80" width="80"/>
+  <div class="media-body">
+    <div [hidden]="this.editing">
+      <h3 class="mt-0 mb-1">{{review.rating}}
+        <button class="btn btn-danger float-right btn-sm"
+                (click)="this.deleteReview()">Delete</button>
+        <button class="btn btn-success float-right btn-sm"
+                (click)="this.editReview()">Edit</button></h3>
+      <h5 class="mt-0 mb-1">{{review.title}}</h5>
+      {{this.review.body}}
+    </div>
+    <div [hidden]="this.editing">
+    <i style="color: black" class="fa fa-thumbs-up"></i>
+      {{review.likes}}
+      <i style="color: black" class="fa fa-thumbs-down"></i>
+    </div>
+
+    <form [hidden]="!this.editing">
+      <div class="form-row">
+        <div class="col">
+          <label for="inputTitle">Title</label>
+          <input name="inputTitle" id="inputTitle" type="text" class="form-control" placeholder="Title"
+                 [(ngModel)]="this.review.title">
+        </div>
+        <div class="col">
+          <label for="inputScore">Score</label>
+          <select name="inputScore" id="inputScore" class="form-control" [(ngModel)]="this.review.rating">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+      </div>
+      <label for="inputReview">Review</label>
+      <textarea name="inputReview" id="inputReview" type="text" class="form-control" placeholder="Review"
+                [(ngModel)]="this.review.body"></textarea>
+    </form>
+    <button class="btn btn-success" [hidden]="!this.editing" (click)="this.update()">Save</button>
+
+    <ul class="list-unstyled">
+      <app-comment *ngFor="let comment of this.comments" [comment]="comment"></app-comment>
+    </ul>
+    <button class="btn btn-link" [hidden]="this.commentsToShow > 0" (click)="this.moreComments()">Show Comments</button>
+    <button class="btn btn-link" [hidden]="this.commentsToShow == 0" (click)="this.moreComments()">More Comments</button>
+    <button class="btn btn-link" [hidden]="this.commentsToShow == 0" (click)="this.fewerComments()">Fewer Comments</button>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Add a comment" aria-label="Add a comment"
+             aria-describedby="basic-addon2" [(ngModel)]="this.newComment">
+      <div class="input-group-append">
+        <button class="btn btn-outline-primary" type="button"
+                (click)="this.postComment()">Post</button>
+      </div>
+    </div>
+  </div>
+</li>
+
