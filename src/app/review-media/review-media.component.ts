@@ -10,8 +10,7 @@ import {CommonModule} from '@angular/common';
 })
 export class ReviewMediaComponent implements OnInit {
   @Input() review: any;
-  rating = 1;
-  editting = false;
+  editing = false;
   comments: any[] = [];
   newComment = '';
 
@@ -31,7 +30,7 @@ export class ReviewMediaComponent implements OnInit {
   }
 
   editReview = () => {
-    this.editting = true;
+    this.editing = true;
   }
 
   deleteComment = (cid: any) => {
@@ -43,5 +42,12 @@ export class ReviewMediaComponent implements OnInit {
     this.commentService.createComment(this.review.id, this.newComment)
       .then(response => this.comments.push(response));
     this.newComment = '';
+  }
+
+  update = () => {
+    console.log(this.review);
+    this.reviewService.updateReview(this.review)
+      .then(response => this.review = response)
+      .then(r => this.editing = false);
   }
 }

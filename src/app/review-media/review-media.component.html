@@ -2,34 +2,50 @@
   <img src="https://i.stack.imgur.com/l60Hf.png"
        class="mr-3" alt="..." height="80" width="80"/>
   <div class="media-body">
-    <div>
-      <h3 class="mt-0 mb-1" [hidden]="this.editting">{{review.rating}}
+    <div [hidden]="this.editing">
+      <h3 class="mt-0 mb-1">{{review.rating}}
         <button class="btn btn-danger float-right btn-sm"
                 (click)="this.deleteReview()">Delete</button>
         <button class="btn btn-success float-right btn-sm"
                 (click)="this.editReview()">Edit</button></h3>
-      <h3 [hidden]="!this.editting">
-        <select name="inputScore" id="editScore" class="form-control" [(ngModel)]="this.rating">
-          <option value="1" selected>1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select>
-        <button class="btn btn-success float-right btn-sm"
-                (click)="this.editReview()">Save</button>
-      </h3>
       <h5 class="mt-0 mb-1">{{review.title}}</h5>
-      {{review.body}}
+      {{this.review.body}}
     </div>
+    <div [hidden]="this.editing">
     <i style="color: black" class="fa fa-thumbs-up"></i>
-    {{review.likes}}
-    <i style="color: black" class="fa fa-thumbs-down"></i>
+      {{review.likes}}
+      <i style="color: black" class="fa fa-thumbs-down"></i>
+    </div>
+
+    <form [hidden]="!this.editing">
+      <div class="form-row">
+        <div class="col">
+          <label for="inputTitle">Title</label>
+          <input name="inputTitle" id="inputTitle" type="text" class="form-control" placeholder="Title"
+                 [(ngModel)]="this.review.title">
+        </div>
+        <div class="col">
+          <label for="inputScore">Score</label>
+          <select name="inputScore" id="inputScore" class="form-control" [(ngModel)]="this.review.rating">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+      </div>
+      <label for="inputReview">Review</label>
+      <textarea name="inputReview" id="inputReview" type="text" class="form-control" placeholder="Review"
+                [(ngModel)]="this.review.body"></textarea>
+    </form>
+    <button class="btn btn-success" [hidden]="!this.editing" (click)="this.update()">Save</button>
+
     <ul class="list-unstyled">
       <div class="media mt-3"
            key="us" *ngFor="let comment of this.comments">

@@ -9,7 +9,6 @@ import {ReviewService} from '../../services/review-service';
   styleUrls: ['./movie-page.component.css']
 })
 export class MoviePageComponent implements OnInit {
-  arr: { [key: string]: any; } = {};
   movie: any;
   reviews: any[] = [];
   rating = 1;
