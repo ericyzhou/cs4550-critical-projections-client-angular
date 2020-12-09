@@ -16,6 +16,7 @@ import {ReviewService} from '../services/review-service';
 import {CommentService} from '../services/comment-service';
 import { ReviewMediaComponent } from './review-media/review-media.component';
 import { CommentComponent } from './comment/comment.component';
+import { ProfileSettingsSectionComponent } from './profile-settings-section/profile-settings-section.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CommentComponent } from './comment/comment.component';
     LoginPageComponent,
     ProfilePageComponent,
     ReviewMediaComponent,
-    CommentComponent
+    CommentComponent,
+    ProfileSettingsSectionComponent
   ],
   imports: [
     BrowserModule,
