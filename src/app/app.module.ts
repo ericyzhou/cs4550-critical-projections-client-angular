@@ -10,6 +10,8 @@ import { ImdbSearchComponent } from './imdb-search/imdb-search.component';
 import {FormsModule} from '@angular/forms';
 import { ImdbSearchResultComponent } from './imdb-search-result/imdb-search-result.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 import {ReviewService} from '../services/review-service';
 import {CommentService} from '../services/comment-service';
 import { ReviewMediaComponent } from './review-media/review-media.component';
@@ -23,6 +25,8 @@ import { CommentComponent } from './comment/comment.component';
     ImdbSearchComponent,
     ImdbSearchResultComponent,
     HomePageComponent,
+    LoginPageComponent,
+    ProfilePageComponent,
     ReviewMediaComponent,
     CommentComponent
   ],
