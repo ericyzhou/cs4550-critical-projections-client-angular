@@ -9,10 +9,10 @@ export class UserService {
       .then(response => response.json());
   }
 
-  createUser = (userId: number, body: any) =>
+  createUser = (user: any) =>
     fetch(`${url}`, {
       method: 'POST',
-      body: JSON.stringify(body),
+      body: JSON.stringify(user),
       headers: {
         'content-type': 'application/json'
       }
