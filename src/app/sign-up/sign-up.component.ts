@@ -10,7 +10,24 @@ export class SignUpComponent implements OnInit {
 
   username = '';
   password = '';
+  confirmPassword = '';
   role = '';
+
+  validUsername = false;
+  validPassword = false;
+
+
+  validUsernameCheck = () => {
+
+  }
+
+  matchingPasswordCheck = () => {
+    return this.confirmPassword === this.confirmPassword;
+  }
+
+  validInputsCheck = () => {
+    return
+  }
 
   createUser = () => {
     this.userService.createUser({username: this.username, password: this.password, role: this.role})

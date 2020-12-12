@@ -1,9 +1,16 @@
 import {Injectable} from '@angular/core';
 
 const url = 'https://critical-projections-server.herokuapp.com/api/users';
+const urlValidate = 'https://critical-projections-server.herokuapp.com/api/validate';
 
 @Injectable()
 export class UserService {
+
+  usernameIsValid = (username: string) => {
+    fetch(`${urlValidate}/${username}`)
+      .then(response => response);
+  }
+
   getUserByName = (username: string) => {
     fetch(`${url}/${username}`)
       .then(response => response.json());
