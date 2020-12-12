@@ -1,17 +1,19 @@
 import {Injectable} from '@angular/core';
 
+const url = 'https://critical-projections-server.herokuapp.com/api';
+
 @Injectable()
 export class CommentService {
   fetchCommentsForReview = (rid: any, count: number) =>
-    fetch(`http://localhost:8080/api/reviews/${rid}/comments/${count}`)
+    fetch(`${url}/reviews/${rid}/comments/${count}`)
       .then(response => response.json())
 
   fetchCommentsForUser = (uid: any) =>
-    fetch(`http://localhost:8080/api/users/${uid}/comments`)
+    fetch(`${url}/users/${uid}/comments`)
       .then(response => response.json())
 
   createComment = (reviewId: number, body: string) =>
-    fetch(`http://localhost:8080/api/comments`, {
+    fetch(`${url}/comments`, {
       method: 'POST',
       body: JSON.stringify({reviewId, body}),
       headers: {
@@ -21,7 +23,7 @@ export class CommentService {
       .then(response => response.json())
 
   updateComment = (comment: any) =>
-    fetch(`http://localhost:8080/api/comments/${comment.id}`, {
+    fetch(`${url}/comments/${comment.id}`, {
       method: 'PUT',
       body: JSON.stringify(comment),
       headers: {
@@ -31,7 +33,7 @@ export class CommentService {
       .then(response => response.json())
 
   deleteComment = (comment: any) =>
-    fetch(`http://localhost:8080/api/comments/${comment.id}`, {
+    fetch(`${url}/comments/${comment.id}`, {
       method: 'DELETE'
     })
       .then(response => response.json())
