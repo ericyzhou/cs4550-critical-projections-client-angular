@@ -6,6 +6,7 @@ import {ImdbSearchComponent} from './imdb-search/imdb-search.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {LoginPageComponent} from './login-page/login-page.component';
 import {ProfilePageComponent} from './profile-page/profile-page.component';
+import {SignUpComponent} from './sign-up/sign-up.component';
 
 const routes: Routes = [
   {path: 'search/movies/:movieId', component: MoviePageComponent},
@@ -13,8 +14,9 @@ const routes: Routes = [
   {path: 'search', component: ImdbSearchComponent},
   {path: 'search/:movieTitle', component: ImdbSearchComponent},
   {path: '', component: HomePageComponent},
-  {path: 'profiles/login', component: LoginPageComponent},
-  {path: 'profiles/users', component: ProfilePageComponent}
+  {path: 'login', component: LoginPageComponent},
+  {path: 'signup', component: SignUpComponent},
+  {path: 'user/:userId', component: ProfilePageComponent}
 ];
 
 @NgModule({
