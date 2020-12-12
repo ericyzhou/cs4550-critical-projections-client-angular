@@ -3,6 +3,7 @@ import {CommentService} from '../../services/comment-service';
 import {ReviewService} from '../../services/review-service';
 import {CommonModule} from '@angular/common';
 import {UserService} from '../../services/user-service';
+import {repeat} from 'rxjs/operators';
 
 @Component({
   selector: 'app-review-media',
@@ -27,13 +28,11 @@ export class ReviewMediaComponent implements OnInit {
       this.commentsToShow = 0;
       this.commentService.fetchCommentsForReview(this.review.id, this.commentsToShow)
         .then(comments => this.comments = comments);
-      let user;
       this.userService.getUserById(this.review.userId)
-        .then(response => user = response);
-      // @ts-ignore
-      this.username = user.username;
-      // @ts-ignore
-      this.profilePic = user.profilePic;
+        .then(response => {
+          this.username = response.username;
+          this.profilePic = response.profilePic;
+        });
     }
   }
 

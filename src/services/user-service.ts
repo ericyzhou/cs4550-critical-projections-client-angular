@@ -15,7 +15,7 @@ export class UserService {
       .then(response => response.json())
 
   getUserById = (id: number) =>
-    fetch(`${url}/${id}`)
+    fetch(`${url}/id/${id}`)
       .then(response => response.json())
 
   createUser = (user: any) =>

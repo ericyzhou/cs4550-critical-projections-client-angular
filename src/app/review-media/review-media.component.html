@@ -3,7 +3,7 @@
        class="mr-3" alt="..." height="80" width="80"/>
   <div class="media-body">
     <div [hidden]="this.editing">
-      <a routerLink="/search/movies/{{this.review.userId}}/reviews" >{{this.username}}</a>
+      <a routerLink="/user/{{this.review.userId}}" >{{this.username}}</a>
       <h3 class="mt-0 mb-1">{{review.rating}}
         <button class="btn btn-danger float-right btn-sm"
                 (click)="this.deleteReview()">Delete</button>
