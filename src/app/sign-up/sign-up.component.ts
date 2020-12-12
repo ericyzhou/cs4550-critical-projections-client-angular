@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,24 +19,35 @@ export class SignUpComponent implements OnInit {
   validRole = false;
 
   validUsernameCheck = () => {
-    this.userService.getUserByName(this.username)
-      .then(response => this.validUsername = response.response);
+    console.log(this.username);
+    if (this.username === '') {
+      this.validUsername = false;
+    } else {
+      this.userService.usernameIsValid(this.username)
+        .then(response => this.validUsername = response.response === 1);
+    }
   }
 
   matchingPasswordCheck = () => {
-    return this.password === this.confirmPassword;
+    console.log(this.password);
+    console.log(this.confirmPassword);
+    this.validPassword = (this.password === this.confirmPassword) && (this.password !== '');
   }
 
   validRoleCheck = () => {
-    return this.validRole;
+    console.log(this.role);
+    this.validRole = this.role !== '';
   }
 
   createUser = () => {
     this.userService.createUser({username: this.username, password: this.password, role: this.role})
       .then(response => console.log(response));
+    this.router.navigate([`user/${this.username}`])
+      .then(response => console.log(response));
   }
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.username = '';
