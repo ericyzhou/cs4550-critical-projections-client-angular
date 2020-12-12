@@ -6,15 +6,14 @@ const urlValidate = 'https://critical-projections-server.herokuapp.com/api/valid
 @Injectable()
 export class UserService {
 
-  usernameIsValid = (username: string) => {
+  usernameIsValid = (username: string) =>
     fetch(`${urlValidate}/${username}`)
-      .then(response => response);
-  }
+      .then(response => response.json())
 
-  getUserByName = (username: string) => {
+
+  getUserByName = (username: string) =>
     fetch(`${url}/${username}`)
-      .then(response => response.json());
-  }
+      .then(response => response.json())
 
   createUser = (user: any) =>
     fetch(`${url}`, {

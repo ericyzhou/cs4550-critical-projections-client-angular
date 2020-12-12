@@ -15,18 +15,19 @@ export class SignUpComponent implements OnInit {
 
   validUsername = false;
   validPassword = false;
-
+  validRole = false;
 
   validUsernameCheck = () => {
-
+    this.userService.getUserByName(this.username)
+      .then(response => this.validUsername = response.response);
   }
 
   matchingPasswordCheck = () => {
-    return this.confirmPassword === this.confirmPassword;
+    return this.password === this.confirmPassword;
   }
 
-  validInputsCheck = () => {
-    return
+  validRoleCheck = () => {
+    return this.validRole;
   }
 
   createUser = () => {
@@ -37,6 +38,10 @@ export class SignUpComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.username = '';
+    this.password = '';
+    this.confirmPassword = '';
+    this.role = '';
   }
 
 }
