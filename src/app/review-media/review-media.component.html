@@ -1,8 +1,9 @@
 <li key='us' class="media my-4">
-  <img src="https://i.stack.imgur.com/l60Hf.png"
+  <img [src]="profilePic"
        class="mr-3" alt="..." height="80" width="80"/>
   <div class="media-body">
     <div [hidden]="this.editing">
+      <a routerLink="/search/movies/{{this.review.userId}}/reviews" >{{this.username}}</a>
       <h3 class="mt-0 mb-1">{{review.rating}}
         <button class="btn btn-danger float-right btn-sm"
                 (click)="this.deleteReview()">Delete</button>

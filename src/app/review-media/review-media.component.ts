@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {CommentService} from '../../services/comment-service';
 import {ReviewService} from '../../services/review-service';
 import {CommonModule} from '@angular/common';
+import {UserService} from '../../services/user-service';
 
 @Component({
   selector: 'app-review-media',
@@ -14,15 +15,25 @@ export class ReviewMediaComponent implements OnInit {
   comments: any[] = [];
   newComment = '';
   commentsToShow = 0;
+  username = '';
+  profilePic = '';
 
   constructor(private reviewService: ReviewService,
-              private commentService: CommentService) { }
+              private commentService: CommentService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     if (typeof this.review !== 'undefined') {
       this.commentsToShow = 0;
       this.commentService.fetchCommentsForReview(this.review.id, this.commentsToShow)
         .then(comments => this.comments = comments);
+      let user;
+      this.userService.getUserById(this.review.userId)
+        .then(response => user = response);
+      // @ts-ignore
+      this.username = user.username;
+      // @ts-ignore
+      this.profilePic = user.profilePic;
     }
   }
 
