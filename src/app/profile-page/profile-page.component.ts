@@ -19,8 +19,6 @@ export class ProfilePageComponent implements OnInit {
               private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getCurrentUser()
-      .then(response => console.log(response));
     this.activatedRoute.params.subscribe(params => {
       const userId = params.userId;
       if (typeof userId !== 'undefined') {
