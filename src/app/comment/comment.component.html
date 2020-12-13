@@ -1,8 +1,9 @@
 <div class="media mt-3"
      key="us">
-  <img src="https://i.stack.imgur.com/l60Hf.png"
+  <img [src]="profilePic"
        class="mr-3" alt="..." height="40" width="40"/>
   <div class="media-body">
+    <a routerLink="/user/{{this.comment.userId}}" >{{this.username}}</a>
     <div>
       <h5><i class="fa fa-trash float-right"
              (click)="this.deleteComment()"></i></h5>

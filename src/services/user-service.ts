@@ -10,9 +10,12 @@ export class UserService {
     fetch(`${urlValidate}/${username}`)
       .then(response => response.json())
 
-
   getUserByName = (username: string) =>
     fetch(`${url}/${username}`)
+      .then(response => response.json())
+
+  getUserById = (id: number) =>
+    fetch(`${url}/id/${id}`)
       .then(response => response.json())
 
   createUser = (user: any) =>

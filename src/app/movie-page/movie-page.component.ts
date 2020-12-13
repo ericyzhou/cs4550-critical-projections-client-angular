@@ -8,12 +8,14 @@ import {ReviewService} from '../../services/review-service';
   templateUrl: './movie-page.component.html',
   styleUrls: ['./movie-page.component.css']
 })
+
 export class MoviePageComponent implements OnInit {
   movie: any;
   reviews: any[] = [];
   rating = 1;
   title = '';
   body = '';
+  score = 0;
 
   constructor(private activatedRoute: ActivatedRoute,
               private imdbService: IMDBSearchService,
@@ -27,13 +29,19 @@ export class MoviePageComponent implements OnInit {
           .then(movie => this.movie = movie);
         this.reviewService.fetchReviewsForMovie(movieId, 5)
           .then(reviews => this.reviews = reviews);
+        this.reviewService.fetchMovieScore(movieId)
+          .then(score => this.score = score);
       }
     });
   }
 
   postReview = () => {
     this.reviewService.createReview(this.title, this.body, this.rating, this.movie.imdbID)
-      .then(response => this.addReview(response));
+      .then(response => {
+        this.addReview(response)
+        this.reviewService.fetchMovieScore(this.movie.id)
+          .then(score => this.score = score);
+      });
     this.title = '';
     this.body = '';
     this.rating = 1;
