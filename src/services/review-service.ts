@@ -27,7 +27,7 @@ export class ReviewService {
   createReview = (title: string, body: string, rating: number, movieId: string) =>
     fetch(`${url}/reviews`, {
       method: 'POST',
-      body: JSON.stringify({movieId, rating, title, body}),
+      body: JSON.stringify({movieId, rating, title, body, criticReview: false, approved: true}),
       headers: {
         'content-type': 'application/json'
       }
