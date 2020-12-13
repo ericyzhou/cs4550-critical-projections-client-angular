@@ -35,9 +35,9 @@ import { ProfileCommentsSectionComponent } from './profile-comments-section/prof
     ReviewMediaComponent,
     CommentComponent,
     ProfileSettingsSectionComponent,
-    SignUpComponent,
+    ProfileCommentsSectionComponent,
     ProfileReviewsSectionComponent,
-    ProfileCommentsSectionComponent
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

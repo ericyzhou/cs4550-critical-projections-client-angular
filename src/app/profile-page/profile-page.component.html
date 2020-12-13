@@ -2,19 +2,30 @@
   <h1>Profile</h1>
   <ul class="nav nav-item">
     <li class="nav-item">
-      <button class="nav-link" (click)="switchToSettings()">
-        Settings
-      </button>
+      <a class="nav-link">
+        <button [ngClass]="{'btn-primary': !this.settings}"
+          class="btn" (click)="switchToSettings()">
+          Profile Information
+        </button>
+      </a>
+
     </li>
     <li class="nav-item">
-      <button class="nav-link" (click)="switchToReviews()">
-        Reviews
-      </button>
+      <a class="nav-link">
+        <button [ngClass]="{'btn-primary': !this.reviews}"
+          class="btn" (click)="switchToReviews()">
+          User Reviews
+        </button>
+      </a>
+
     </li>
     <li class="nav-item">
-      <button class="nav-link" (click)="switchToComments()">
-        Comments
-      </button>
+      <a class="nav-link">
+        <button [ngClass]="{'btn-primary': !this.comments}"
+          class="btn" (click)="switchToComments()">
+          User Comments
+        </button>
+      </a>
     </li>
   </ul>
   <app-profile-settings-section [hidden]="this.settings"></app-profile-settings-section>
