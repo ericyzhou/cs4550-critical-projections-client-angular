@@ -16,8 +16,9 @@ export class ProfileSettingsSectionComponent implements OnInit {
               private userService: UserService) {
   }
 
+  // false -> owner, true -> not owner
   isProfileOwner = () => {
-    return false;
+    return !(this.user._id === this.currentUser._id);
   }
 
   updateProfile = () => {
