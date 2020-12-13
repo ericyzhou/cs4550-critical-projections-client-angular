@@ -44,7 +44,7 @@ export class ReviewService {
     })
       .then(response => response.json())
 
-  deleteReview = (review: any) =>
+  deleteReview = (review: number) =>
     fetch(`${url}/reviews/${review}`, {
       method: 'DELETE'
     })
