@@ -1,5 +1,2 @@
-<ul class="list-unstyled">
-  <app-review-media (deleteEvent)="reload()" *ngFor="let review of this.criticReviews" [review] = review></app-review-media>
-  <button class="btn btn-link" (click)="this.moreCriticReviews()">More Reviews</button>
-  <button class="btn btn-link" [hidden]="this.criticCount <= 3" (click)="this.lessCriticReviews()">Fewer Reviews</button>
-</ul>
+<h3>Reviews by {{this.user.username}}</h3>
+<app-review-media *ngFor="let review of this.reviews" [review] = review></app-review-media>
