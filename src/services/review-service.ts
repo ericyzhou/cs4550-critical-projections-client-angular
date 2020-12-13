@@ -27,7 +27,7 @@ export class ReviewService {
   createReview = (title: string, body: string, rating: number, movieId: string) =>
     fetch(`${url}/reviews`, {
       method: 'POST',
-      body: JSON.stringify({movieId, rating, Title: title, body}),
+      body: JSON.stringify({movieId, rating, title, body, criticReview: false, approved: true}),
       headers: {
         'content-type': 'application/json'
       }
@@ -44,8 +44,8 @@ export class ReviewService {
     })
       .then(response => response.json())
 
-  deleteReview = (review: any) =>
-    fetch(`${url}/reviews/${review.id}`, {
+  deleteReview = (review: number) =>
+    fetch(`${url}/reviews/${review}`, {
       method: 'DELETE'
     })
       .then(response => response.json())

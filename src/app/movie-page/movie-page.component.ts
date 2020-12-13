@@ -38,7 +38,8 @@ export class MoviePageComponent implements OnInit {
   postReview = () => {
     this.reviewService.createReview(this.title, this.body, this.rating, this.movie.imdbID)
       .then(response => {
-        this.addReview(response)
+        console.log(response);
+        this.addReview(response);
         this.reviewService.fetchMovieScore(this.movie.id)
           .then(score => this.score = score);
       });
