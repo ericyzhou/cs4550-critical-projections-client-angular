@@ -10,22 +10,28 @@ import {Router} from '@angular/router';
 export class SignUpComponent implements OnInit {
 
   username = '';
+  email = '';
   password = '';
   confirmPassword = '';
   role = '';
 
   validUsername = false;
+  validEmail = false;
   validPassword = false;
   validRole = false;
 
   validUsernameCheck = () => {
-    console.log(this.username);
     if (this.username === '') {
       this.validUsername = false;
     } else {
       this.userService.usernameIsValid(this.username)
         .then(response => this.validUsername = response.response === 1);
     }
+  }
+
+  validEmailCheck = () => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    this.validEmail = this.email !== '' && re.test(String(this.email).toLowerCase());
   }
 
   matchingPasswordCheck = () => {
