@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-profile-page',
@@ -7,37 +8,64 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ProfilePageComponent implements OnInit {
 
-   settings = false;
+   settings = true;
    reviews = true;
    comments = true;
-   currTab = 0;
+   error = false;
+   userId = '';
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      const userId = params.userId;
+      if (typeof userId !== 'undefined') {
+        this.userId = userId;
+      }
+      const tab = params.tab;
+      if (typeof tab !== 'undefined') {
+        switch (tab) {
+          case 'settings':
+            this.switchToSettings();
+            break;
+          case 'reviews':
+            this.switchToReviews();
+            break;
+          case 'comments':
+            this.switchToComments();
+            break;
+          default:
+            this.switchToError();
+        }
+      }
+    });
   }
 
   switchToSettings = () => {
     this.settings = false;
     this.reviews = true;
     this.comments = true;
+    this.error = true;
   }
 
   switchToReviews = () => {
     this.settings = true;
     this.reviews = false;
     this.comments = true;
+    this.error = true;
   }
 
   switchToComments = () => {
     this.settings = true;
     this.reviews = true;
     this.comments = false;
+    this.error = true;
   }
-}
 
-enum ProfileTabs {
-  Settings,
-  Review,
-  Comments
+  switchToError = () => {
+    this.settings = true;
+    this.reviews = true;
+    this.comments = true;
+    this.error = false;
+  }
 }

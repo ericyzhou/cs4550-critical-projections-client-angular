@@ -1,34 +1,29 @@
 <div class="container">
   <h1>Profile</h1>
-  <ul class="nav nav-item">
+  <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link">
-        <button [ngClass]="{'btn-primary': !this.settings}"
-          class="btn" (click)="switchToSettings()">
+      <a [ngClass]="{'active': !this.settings}"
+         class="nav-link" routerLink="/profile/{{this.userId}}/settings">
           Profile Information
-        </button>
       </a>
 
     </li>
     <li class="nav-item">
-      <a class="nav-link">
-        <button [ngClass]="{'btn-primary': !this.reviews}"
-          class="btn" (click)="switchToReviews()">
+      <a [ngClass]="{'active': !this.reviews}"
+         class="nav-link" routerLink="/profile/{{this.userId}}/reviews">
           User Reviews
-        </button>
       </a>
 
     </li>
     <li class="nav-item">
-      <a class="nav-link">
-        <button [ngClass]="{'btn-primary': !this.comments}"
-          class="btn" (click)="switchToComments()">
+      <a [ngClass]="{'active': !this.comments}"
+         class="nav-link" routerLink="/profile/{{this.userId}}/comments">
           User Comments
-        </button>
       </a>
     </li>
   </ul>
   <app-profile-settings-section [hidden]="this.settings"></app-profile-settings-section>
   <app-profile-reviews-section [hidden]="this.reviews"></app-profile-reviews-section>
   <app-profile-comments-section [hidden]="this.comments"></app-profile-comments-section>
+  <app-profile-not-a-section [hidden]="this.error"></app-profile-not-a-section>
 </div>
