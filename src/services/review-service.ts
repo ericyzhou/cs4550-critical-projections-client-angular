@@ -24,10 +24,10 @@ export class ReviewService {
     fetch(`${url}/users/${uid}/reviews`)
       .then(response => response.json())
 
-  createReview = (title: string, body: string, rating: number, movieId: string) =>
+  createReview = (userId: number, title: string, body: string, rating: number, movieId: string, criticReview: boolean) =>
     fetch(`${url}/reviews`, {
       method: 'POST',
-      body: JSON.stringify({movieId, rating, title, body, criticReview: false, approved: true}),
+      body: JSON.stringify({movieId, userId, rating, title, body, criticReview, approved: true}),
       headers: {
         'content-type': 'application/json'
       }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {IMDBSearchService} from '../../services/IMDBSearchService';
 import {ReviewService} from '../../services/review-service';
+import {UserService} from '../../services/user-service';
 
 @Component({
   selector: 'app-movie-page',
@@ -20,7 +21,8 @@ export class MoviePageComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private imdbService: IMDBSearchService,
-              private reviewService: ReviewService) { }
+              private reviewService: ReviewService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -38,14 +40,24 @@ export class MoviePageComponent implements OnInit {
   }
 
   postReview = () => {
-    this.reviewService.createReview(this.title, this.body, this.rating, this.movie.imdbID)
+    this.userService.getCurrentUser()
       .then(response => {
-        console.log(response);
-        this.addReview(response);
+        if (response.response === 0) {
+          alert('You must be logged in to post a review');
+          this.title = '';
+          this.body = '';
+          this.rating = 1;
+        } else {
+          this.reviewService.createReview(response.user.id, this.title, this.body, this.rating, this.movie.imdbID, response.user.role === 'verifiedCritic')
+            .then(resp => {
+              console.log(resp);
+              this.addReview(resp);
+              this.title = '';
+              this.body = '';
+              this.rating = 1;
+            });
+        }
       });
-    this.title = '';
-    this.body = '';
-    this.rating = 1;
   }
 
   addReview = (review: any) => {

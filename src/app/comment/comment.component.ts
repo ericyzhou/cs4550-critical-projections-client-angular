@@ -13,16 +13,26 @@ export class CommentComponent implements OnInit {
   deleteCommentEvent = new EventEmitter();
   username = '';
   profilePic = '';
+  isAdmin = false;
+  sameUser = false;
 
   constructor(private commentService: CommentService,
               private userService: UserService) { }
 
   ngOnInit(): void {
-    if (this.commentService !== undefined) {
+    if (this.comment !== undefined) {
       this.userService.getUserById(this.comment.userId)
         .then(response => {
           this.username = response.username;
           this.profilePic = response.profilePic;
+        });
+      this.userService.getCurrentUser()
+        .then(response => {
+          if (response.response === 0) {
+          } else {
+            this.isAdmin = response.user.role === 'admin';
+            this.sameUser = response.user.id === this.comment.userId;
+          }
         });
     }
   }
@@ -32,4 +42,7 @@ export class CommentComponent implements OnInit {
       .then(result => this.deleteCommentEvent.emit(null));
   }
 
+  showDelete(): boolean {
+    return this.isAdmin || this.sameUser;
+  }
 }

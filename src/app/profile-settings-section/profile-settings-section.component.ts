@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../../services/user-service';
 
 @Component({
   selector: 'app-profile-settings-section',
@@ -9,9 +10,14 @@ export class ProfileSettingsSectionComponent implements OnInit {
 
   user = {username: 'temp', password: '1234', email: '1324@5678.com', role: 'ADMIN'};
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+  }
+
+  logout = () => {
+    this.userService.logout()
+      .then(response => alert('Logged out'));
   }
 
 }
