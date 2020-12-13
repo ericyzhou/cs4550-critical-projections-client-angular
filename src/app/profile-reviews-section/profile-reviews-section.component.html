@@ -1,1 +1,5 @@
-<p>profile-reviews-section works!</p>
+<ul class="list-unstyled">
+  <app-review-media (deleteEvent)="reload()" *ngFor="let review of this.criticReviews" [review] = review></app-review-media>
+  <button class="btn btn-link" (click)="this.moreCriticReviews()">More Reviews</button>
+  <button class="btn btn-link" [hidden]="this.criticCount <= 3" (click)="this.lessCriticReviews()">Fewer Reviews</button>
+</ul>

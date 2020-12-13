@@ -16,7 +16,7 @@ export class ProfileSettingsSectionComponent implements OnInit {
   }
 
   isProfileOwner = () => {
-    return true;
+    return false;
   }
 
   updateProfile = () => {
