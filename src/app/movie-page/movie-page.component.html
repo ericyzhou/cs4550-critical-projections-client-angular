@@ -71,7 +71,7 @@
   <div class="container">
     <h1>Top Reviews</h1>
     <ul class="list-unstyled">
-      <app-review-media *ngFor="let review of this.reviews" [review] = review></app-review-media>
+      <app-review-media (deleteEvent)="this.reload()" *ngFor="let review of this.reviews" [review] = review></app-review-media>
     </ul>
     <a routerLink="/search/movies/{{movie.imdbID}}/reviews" >See more</a>
   </div>

@@ -10,6 +10,7 @@ import {ReviewService} from '../../services/review-service';
 })
 
 export class MoviePageComponent implements OnInit {
+  movieId: any;
   movie: any;
   reviews: any[] = [];
   rating = 1;
@@ -25,6 +26,7 @@ export class MoviePageComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       const movieId = params.movieId;
       if (typeof movieId !== 'undefined') {
+        this.movieId = movieId;
         this.imdbService.findMovieById(movieId)
           .then(movie => this.movie = movie);
         this.reviewService.fetchReviewsForMovie(movieId, 5)
@@ -38,9 +40,8 @@ export class MoviePageComponent implements OnInit {
   postReview = () => {
     this.reviewService.createReview(this.title, this.body, this.rating, this.movie.imdbID)
       .then(response => {
-        this.addReview(response)
-        this.reviewService.fetchMovieScore(this.movie.id)
-          .then(score => this.score = score);
+        console.log(response);
+        this.addReview(response);
       });
     this.title = '';
     this.body = '';
@@ -49,5 +50,10 @@ export class MoviePageComponent implements OnInit {
 
   addReview = (review: any) => {
     this.reviews.push(review);
+  }
+
+  reload = () => {
+    this.reviewService.fetchReviewsForMovie(this.movieId, 5)
+      .then(reviews => this.reviews = reviews);
   }
 }

@@ -4,7 +4,7 @@
   <div class="container">
     <h3>Critic Reviews</h3>
     <ul class="list-unstyled">
-      <app-review-media *ngFor="let review of this.criticReviews" [review] = review></app-review-media>
+      <app-review-media (deleteEvent)="reload()" *ngFor="let review of this.criticReviews" [review] = review></app-review-media>
       <button class="btn btn-link" (click)="this.moreCriticReviews()">More Reviews</button>
       <button class="btn btn-link" [hidden]="this.criticCount <= 3" (click)="this.lessCriticReviews()">Fewer Reviews</button>
     </ul>
@@ -13,7 +13,7 @@
   <div class="container">
     <h3>General Reviews</h3>
     <ul class="list-unstyled">
-      <app-review-media *ngFor="let review of this.userReviews" [review] = review></app-review-media>
+      <app-review-media (deleteEvent)="reload()" *ngFor="let review of this.userReviews" [review] = review></app-review-media>
     </ul>
     <button class="btn btn-link" (click)="this.moreUserReviews()">More Reviews</button>
     <button class="btn btn-link" [hidden]="this.userCount <= 3" (click)="this.lessUserReviews()">Fewer Reviews</button>

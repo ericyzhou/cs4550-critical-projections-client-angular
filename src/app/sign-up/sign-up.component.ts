@@ -10,16 +10,17 @@ import {Router} from '@angular/router';
 export class SignUpComponent implements OnInit {
 
   username = '';
+  email = '';
   password = '';
   confirmPassword = '';
   role = '';
 
   validUsername = false;
+  validEmail = false;
   validPassword = false;
   validRole = false;
 
   validUsernameCheck = () => {
-    console.log(this.username);
     if (this.username === '') {
       this.validUsername = false;
     } else {
@@ -28,21 +29,23 @@ export class SignUpComponent implements OnInit {
     }
   }
 
+  validEmailCheck = () => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    this.validEmail = this.email !== '' && re.test(String(this.email).toLowerCase());
+  }
+
   matchingPasswordCheck = () => {
-    console.log(this.password);
-    console.log(this.confirmPassword);
     this.validPassword = (this.password === this.confirmPassword) && (this.password !== '');
   }
 
   validRoleCheck = () => {
-    console.log(this.role);
     this.validRole = this.role !== '';
   }
 
   createUser = () => {
-    this.userService.createUser({username: this.username, password: this.password, role: this.role})
+    this.userService.createUser(0, this.username, this.password, this.email, this.role, '')
       .then(response => console.log(response));
-    this.router.navigate([`user/${this.username}`])
+    this.router.navigate(['/login'])
       .then(response => console.log(response));
   }
 
