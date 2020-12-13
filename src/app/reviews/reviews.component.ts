@@ -72,4 +72,10 @@ export class ReviewsComponent implements OnInit {
       .then(reviews => this.criticReviews = reviews);
   }
 
+  reload = () => {
+    this.reviewService.fetchUserReviewsForMovie(this.movieId, this.userCount)
+      .then(reviews => this.userReviews = reviews);
+    this.reviewService.fetchCriticReviewsForMovie(this.movieId, this.criticCount)
+      .then(r => this.criticReviews = r);
+  }
 }

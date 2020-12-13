@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CommentService} from '../../services/comment-service';
 import {UserService} from '../../services/user-service';
 
@@ -9,6 +9,8 @@ import {UserService} from '../../services/user-service';
 })
 export class CommentComponent implements OnInit {
   @Input() comment: any;
+  @Output()
+  deleteCommentEvent = new EventEmitter();
   username = '';
   profilePic = '';
 
@@ -26,8 +28,8 @@ export class CommentComponent implements OnInit {
   }
 
   deleteComment = () => {
-    this.commentService.deleteComment(this.comment.id)
-      .then(result => alert(`Deleted comment ${this.comment.id}`));
+    this.commentService.deleteComment(this.comment)
+      .then(result => this.deleteCommentEvent.emit(null));
   }
 
 }

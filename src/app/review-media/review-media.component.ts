@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output} from '@angular/core';
 import {CommentService} from '../../services/comment-service';
 import {ReviewService} from '../../services/review-service';
 import {CommonModule} from '@angular/common';
 import {UserService} from '../../services/user-service';
 import {repeat} from 'rxjs/operators';
+import {EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-review-media',
@@ -12,6 +13,8 @@ import {repeat} from 'rxjs/operators';
 })
 export class ReviewMediaComponent implements OnInit {
   @Input() review: any;
+  @Output()
+  deleteEvent = new EventEmitter();
   editing = false;
   comments: any[] = [];
   newComment = '';
@@ -37,8 +40,8 @@ export class ReviewMediaComponent implements OnInit {
   }
 
   deleteReview = () => {
-    this.reviewService.deleteReview(this.review.id)
-      .then(status => alert(`Deleted review ${this.review.id}`));
+    this.reviewService.deleteReview(this.review)
+      .then(status => this.deleteEvent.emit(null));
   }
 
   editReview = () => {
@@ -69,6 +72,11 @@ export class ReviewMediaComponent implements OnInit {
     if (this.commentsToShow < 0) {
       this.commentsToShow = 0;
     }
+    this.commentService.fetchCommentsForReview(this.review.id, this.commentsToShow)
+      .then(comments => this.comments = comments);
+  }
+
+  reload = () => {
     this.commentService.fetchCommentsForReview(this.review.id, this.commentsToShow)
       .then(comments => this.comments = comments);
   }

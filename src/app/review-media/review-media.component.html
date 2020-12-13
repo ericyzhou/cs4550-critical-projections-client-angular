@@ -48,7 +48,7 @@
     <button class="btn btn-success" [hidden]="!this.editing" (click)="this.update()">Save</button>
 
     <ul class="list-unstyled">
-      <app-comment *ngFor="let comment of this.comments" [comment]="comment"></app-comment>
+      <app-comment (deleteCommentEvent)="this.reload()" *ngFor="let comment of this.comments" [comment]="comment"></app-comment>
     </ul>
     <button class="btn btn-link" [hidden]="this.commentsToShow > 0" (click)="this.moreComments()">Show Comments</button>
     <button class="btn btn-link" [hidden]="this.commentsToShow == 0" (click)="this.moreComments()">More Comments</button>
