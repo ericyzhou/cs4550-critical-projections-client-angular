@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
 
-const loginUrl = 'https://critical-projections-server.herokuapp.com/api/login';
-const url = 'https://critical-projections-server.herokuapp.com/api/users';
-const urlValidate = 'https://critical-projections-server.herokuapp.com/api/validate';
+const loginUrl = 'http://localhost:8080/api/login'; // 'https://critical-projections-server.herokuapp.com/api/login';
+const url = 'http://localhost:8080/api/users'; // 'https://critical-projections-server.herokuapp.com/api/users';
+const urlValidate = 'http://localhost:8080/api/validate'; // 'https://critical-projections-server.herokuapp.com/api/validate';
+const urlLoggedIn = 'http://localhost:8080/api/curuser';
+const urlOutLog = 'http://localhost:8080/api/logout';
 
 @Injectable()
 export class UserService {
@@ -13,9 +15,26 @@ export class UserService {
       body: JSON.stringify(login),
       headers: {
         'content-type': 'application/json'
-      }
+      },
+      credentials: 'include'
     })
       .then(response => response.json())
+
+  getCurrentUser = () =>
+    fetch(`${urlLoggedIn}`, {
+      credentials: 'include'
+    })
+      .then(response => response.json())
+
+  logout = () =>
+    fetch(`${urlOutLog}`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      credentials: 'include'
+    })
+  .then(response => response.json())
 
   usernameIsValid = (username: string) =>
     fetch(`${urlValidate}/${username}`)
