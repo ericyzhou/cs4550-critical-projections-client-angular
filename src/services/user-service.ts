@@ -58,8 +58,8 @@ export class UserService {
     })
       .then(response => response.json())
 
-  updateUser = (username: string, user: any) =>
-    fetch(`${url}/${username}`, {
+  updateUser = (userId: number, user: any) =>
+    fetch(`${url}/${userId}`, {
       method: 'PUT',
       body: JSON.stringify(user),
       headers: {
@@ -68,8 +68,8 @@ export class UserService {
     })
       .then(response => response.json())
 
-  deleteUser = (username: string) =>
-    fetch(`${url}/${username}`, {
+  deleteUser = (userId: number) =>
+    fetch(`${url}/${userId}`, {
       method: 'DELETE'
     })
       .then(response => response.json())

@@ -19,6 +19,7 @@ import { CommentComponent } from './comment/comment.component';
 import { ProfileSettingsSectionComponent } from './profile-settings-section/profile-settings-section.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import {UserService} from '../services/user-service';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {UserService} from '../services/user-service';
     ReviewMediaComponent,
     CommentComponent,
     ProfileSettingsSectionComponent,
-    SignUpComponent
+    SignUpComponent,
+    NavigationBarComponent
   ],
   imports: [
     BrowserModule,
