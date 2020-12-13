@@ -19,6 +19,15 @@ export class ProfileSettingsSectionComponent implements OnInit {
     return false;
   }
 
+  updateProfile = () => {
+    this.userService.updateUser(this.user.username, this.user)
+      .then(updatedUser => this.user = updatedUser);
+  }
+
+  logout = () => {
+    console.log('not that user anymore');
+  }
+
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       const userId = params.userId;
