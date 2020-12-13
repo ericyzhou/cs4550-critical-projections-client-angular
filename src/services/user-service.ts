@@ -29,10 +29,10 @@ export class UserService {
     fetch(`${url}/id/${id}`)
       .then(response => response.json())
 
-  createUser = (user: any) =>
+  createUser = (id: number, username: string, password: string, email: string, role: string, profilePic: string) =>
     fetch(`${url}`, {
       method: 'POST',
-      body: JSON.stringify(user),
+      body: JSON.stringify({id, username, password, email, role, profilePic}),
       headers: {
         'content-type': 'application/json'
       }
