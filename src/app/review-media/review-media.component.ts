@@ -21,6 +21,8 @@ export class ReviewMediaComponent implements OnInit {
   commentsToShow = 0;
   username = '';
   profilePic = '';
+  sameUser = false;
+  admin = false;
 
   constructor(private reviewService: ReviewService,
               private commentService: CommentService,
@@ -36,6 +38,14 @@ export class ReviewMediaComponent implements OnInit {
           this.username = response.username;
           this.profilePic = response.profilePic;
         });
+      this.userService.getCurrentUser()
+        .then(response => {
+          if (response.response === 0) {
+          } else {
+            this.admin = response.user.role === 'admin';
+            this.sameUser = response.user.id === this.review.userId;
+          }
+        });
     }
   }
 
@@ -49,9 +59,21 @@ export class ReviewMediaComponent implements OnInit {
   }
 
   postComment = () => {
-    this.commentService.createComment(this.review.id, this.newComment)
-      .then(response => this.comments.push(response));
-    this.newComment = '';
+    this.userService.getCurrentUser()
+      .then(response => {
+        if (response.response === 0) {
+          alert('You must be logged in to post a comment');
+          this.newComment = '';
+        } else {
+          this.commentService.createComment(response.user.id, this.review.id, this.newComment)
+            .then(resp =>
+          {
+            this.comments.push(resp);
+            this.newComment = '';
+          }
+          );
+        }
+      });
   }
 
   update = () => {
@@ -79,5 +101,10 @@ export class ReviewMediaComponent implements OnInit {
   reload = () => {
     this.commentService.fetchCommentsForReview(this.review.id, this.commentsToShow)
       .then(comments => this.comments = comments);
+  }
+
+
+  showEditAndDelete(): boolean {
+    return this.sameUser || this.admin;
   }
 }

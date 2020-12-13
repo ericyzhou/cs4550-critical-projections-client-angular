@@ -5,7 +5,7 @@
   <div class="media-body">
     <a routerLink="/user/{{this.comment.userId}}" >{{this.username}}</a>
     <div>
-      <h5><i class="fa fa-trash float-right"
+      <h5><i [hidden]="!this.showDelete()" class="fa fa-trash float-right"
              (click)="this.deleteComment()"></i></h5>
       {{this.comment.body}}
     </div>

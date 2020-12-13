@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
 
-const loginUrl = 'https://critical-projections-server.herokuapp.com/api/login';
-const url = 'https://critical-projections-server.herokuapp.com/api/users';
-const urlValidate = 'https://critical-projections-server.herokuapp.com/api/validate';
+const loginUrl = 'https://critical-projections-server.herokuapp.com/api/login'; // 'http://localhost:8080/api/login'
+const url =  'https://critical-projections-server.herokuapp.com/api/users'; // 'http://localhost:8080/api/users';
+const urlValidate = 'https://critical-projections-server.herokuapp.com/api/validate'; // 'http://localhost:8080/api/validate';
+const urlLoggedIn = 'https://critical-projections-server.herokuapp.com/api/curuser'; // 'http://localhost:8080/api/curuser';
+const urlOutLog = 'https://critical-projections-server.herokuapp.com/api/logout'; // 'http://localhost:8080/api/logout';
 
 @Injectable()
 export class UserService {
@@ -13,9 +15,26 @@ export class UserService {
       body: JSON.stringify(login),
       headers: {
         'content-type': 'application/json'
-      }
+      },
+      credentials: 'include'
     })
       .then(response => response.json())
+
+  getCurrentUser = () =>
+    fetch(`${urlLoggedIn}`, {
+      credentials: 'include'
+    })
+      .then(response => response.json())
+
+  logout = () =>
+    fetch(`${urlOutLog}`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      credentials: 'include'
+    })
+  .then(response => response.json())
 
   usernameIsValid = (username: string) =>
     fetch(`${urlValidate}/${username}`)

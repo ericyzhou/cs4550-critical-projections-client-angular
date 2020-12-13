@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {UserService} from '../../services/user-service';
 
 @Component({
   selector: 'app-profile-page',
@@ -8,15 +9,18 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ProfilePageComponent implements OnInit {
 
-   settings = true;
+  settings = true;
    reviews = true;
    comments = true;
    error = false;
    userId = '';
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute,
+              private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.getCurrentUser()
+      .then(response => console.log(response));
     this.activatedRoute.params.subscribe(params => {
       const userId = params.userId;
       if (typeof userId !== 'undefined') {

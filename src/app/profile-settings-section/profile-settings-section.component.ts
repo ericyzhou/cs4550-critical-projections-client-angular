@@ -25,7 +25,8 @@ export class ProfileSettingsSectionComponent implements OnInit {
   }
 
   logout = () => {
-    console.log('not that user anymore');
+    this.userService.logout()
+      .then(response => alert('Logged out'));
   }
 
   ngOnInit(): void {

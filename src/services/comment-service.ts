@@ -12,10 +12,10 @@ export class CommentService {
     fetch(`${url}/users/${uid}/comments`)
       .then(response => response.json())
 
-  createComment = (reviewId: number, body: string) =>
+  createComment = (userId: number, reviewId: number, body: string,) =>
     fetch(`${url}/comments`, {
       method: 'POST',
-      body: JSON.stringify({reviewId, body}),
+      body: JSON.stringify({userId, reviewId, body, likes: 0}),
       headers: {
         'content-type': 'application/json'
       }

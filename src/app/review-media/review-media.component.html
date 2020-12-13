@@ -5,9 +5,9 @@
     <div [hidden]="this.editing">
       <a routerLink="/user/{{this.review.userId}}" >{{this.username}}</a>
       <h3 class="mt-0 mb-1">{{review.rating}}
-        <button class="btn btn-danger float-right btn-sm"
+        <button [hidden]="!this.showEditAndDelete()" class="btn btn-danger float-right btn-sm"
                 (click)="this.deleteReview()">Delete</button>
-        <button class="btn btn-success float-right btn-sm"
+        <button [hidden]="!this.showEditAndDelete()" class="btn btn-success float-right btn-sm"
                 (click)="this.editReview()">Edit</button></h3>
       <h5 class="mt-0 mb-1">{{review.title}}</h5>
       {{this.review.body}}
