@@ -17,7 +17,7 @@ export class LoginPageComponent implements OnInit {
 
   validateUsername = () => {
     this.userService.usernameIsValid(this.username)
-      .then(response => this.validUsername = response.response === 1);
+      .then(response => this.validUsername = response.response === 0);
   }
 
   attemptLogin = () => {

@@ -35,20 +35,17 @@ export class SignUpComponent implements OnInit {
   }
 
   matchingPasswordCheck = () => {
-    console.log(this.password);
-    console.log(this.confirmPassword);
     this.validPassword = (this.password === this.confirmPassword) && (this.password !== '');
   }
 
   validRoleCheck = () => {
-    console.log(this.role);
     this.validRole = this.role !== '';
   }
 
   createUser = () => {
-    this.userService.createUser({username: this.username, password: this.password, role: this.role})
+    this.userService.createUser(0, this.username, this.password, this.email, this.role, '')
       .then(response => console.log(response));
-    this.router.navigate([`user/${this.username}`])
+    this.router.navigate(['/login'])
       .then(response => console.log(response));
   }
 
