@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 import {UserService} from '../../services/user-service';
 
 @Component({
@@ -13,6 +13,7 @@ export class ProfileSettingsSectionComponent implements OnInit {
   currentUser = {id: 0, username: '', password: '', email: '', role: '', profilePic: ''};
 
   constructor(private activatedRoute: ActivatedRoute,
+              private router: Router,
               private userService: UserService) {
   }
 
@@ -29,6 +30,8 @@ export class ProfileSettingsSectionComponent implements OnInit {
   logout = () => {
     this.userService.logout()
       .then(response => alert('Logged out'));
+    this.router.navigate([''])
+      .then(response => console.log(response));
   }
 
   ngOnInit(): void {
