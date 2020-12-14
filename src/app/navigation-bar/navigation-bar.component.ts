@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../../services/user-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -7,9 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationBarComponent implements OnInit {
 
-  constructor() { }
+  userLoggedIn = false;
+  currentUser = {id: 0, username: '', password: '', email: '', role: '', profilePic: ''};
+
+  constructor(private userService: UserService,
+              private router: Router) { }
+
+  logout = () => {
+    this.userService.logout()
+      .then(response => {
+        this.userLoggedIn = false;
+        this.currentUser = {id: 0, username: '', password: '', email: '', role: '', profilePic: ''};
+        this.router.navigate([''])
+          .then(log => console.log(log)); });
+  }
 
   ngOnInit(): void {
+    this.userLoggedIn = false;
+    this.currentUser = {id: 0, username: '', password: '', email: '', role: '', profilePic: ''};
+    this.userService.getCurrentUser()
+      .then(response => {
+        if (response.response === 1) {
+          this.userLoggedIn = true;
+          this.currentUser = response.user;
+        } else {
+          this.userLoggedIn = false;
+          this.currentUser = {id: 0, username: '', password: '', email: '', role: '', profilePic: ''};
+        }});
   }
 
 }

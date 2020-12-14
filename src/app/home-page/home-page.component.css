@@ -1,3 +1,22 @@
 .index-link {
   padding-right: 10px;
 }
+
+.home-layout-container-left {
+  padding-right: 5px;
+}
+
+.home-layout-container-middle {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.home-layout-container-right {
+  padding-left: 0px;
+}
+
+.home-layout-cube {
+  background-color: whitesmoke;
+  /*padding: 10px;*/
+  border-radius: 10px;
+}
