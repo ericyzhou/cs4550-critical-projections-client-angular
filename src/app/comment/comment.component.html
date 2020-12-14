@@ -9,8 +9,8 @@
              (click)="this.deleteComment()"></i></h5>
       {{this.comment.body}}
     </div>
-    <i style="color: black" class="fa fa-thumbs-up"></i>
+    <i style="color: black" class="fa fa-thumbs-up" [hidden]="liked" (click)="like()"></i>
     {{this.comment.likes}}
-    <i style="color: black" class="fa fa-thumbs-down"></i>
+    <i style="color: black" class="fa fa-thumbs-down" [hidden]="disliked" (click)="dislike()"></i>
   </div>
 </div>

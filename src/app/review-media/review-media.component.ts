@@ -23,6 +23,8 @@ export class ReviewMediaComponent implements OnInit {
   profilePic = '';
   sameUser = false;
   admin = false;
+  liked = false;
+  disliked = false;
 
   constructor(private reviewService: ReviewService,
               private commentService: CommentService,
@@ -106,5 +108,40 @@ export class ReviewMediaComponent implements OnInit {
 
   showEditAndDelete(): boolean {
     return this.sameUser || this.admin;
+  }
+
+  like = () => {
+    this.userService.getCurrentUser()
+      .then(response => {
+        if (response.response === 0) {
+          alert('You must be logged in to like a review');
+        } else {
+          if (!this.liked) {
+            this.review.likes++;
+            this.liked = true;
+            this.disliked = false;
+            this.reviewService.updateReview(this.review)
+              .then(rev => this.review = rev);
+          }
+        }
+      });
+  }
+
+  dislike = () => {
+    this.userService.getCurrentUser()
+      .then(response => {
+        if (response.response === 0) {
+          alert('You must be logged in to dislike a review');
+          this.newComment = '';
+        } else {
+          if (!this.disliked) {
+            this.review.likes--;
+            this.liked = false;
+            this.disliked = true;
+            this.reviewService.updateReview(this.review)
+              .then(rev => this.review = rev);
+          }
+        }
+      });
   }
 }

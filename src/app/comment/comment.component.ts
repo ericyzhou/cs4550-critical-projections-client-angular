@@ -15,6 +15,8 @@ export class CommentComponent implements OnInit {
   profilePic = '';
   isAdmin = false;
   sameUser = false;
+  liked = false;
+  disliked = false;
 
   constructor(private commentService: CommentService,
               private userService: UserService) { }
@@ -44,5 +46,39 @@ export class CommentComponent implements OnInit {
 
   showDelete(): boolean {
     return this.isAdmin || this.sameUser;
+  }
+
+  like = () => {
+    this.userService.getCurrentUser()
+      .then(response => {
+        if (response.response === 0) {
+          alert('You must be logged in to like a comment');
+        } else {
+          if (!this.liked) {
+            this.comment.likes++;
+            this.liked = true;
+            this.disliked = false;
+            this.commentService.updateComment(this.comment)
+              .then();
+          }
+        }
+      });
+  }
+
+  dislike = () => {
+    this.userService.getCurrentUser()
+      .then(response => {
+        if (response.response === 0) {
+          alert('You must be logged in to dislike a comment');
+        } else {
+          if (!this.disliked) {
+            this.comment.likes--;
+            this.liked = false;
+            this.disliked = true;
+            this.commentService.updateComment(this.comment)
+              .then();
+          }
+        }
+      });
   }
 }
