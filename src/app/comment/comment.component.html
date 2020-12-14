@@ -3,7 +3,7 @@
   <img [src]="profilePic"
        class="mr-3" alt="..." height="40" width="40"/>
   <div class="media-body">
-    <a routerLink="/user/{{this.comment.userId}}" >{{this.username}}</a>
+    <a routerLink="/profile/{{this.comment.userId}}/comments">{{this.username}}</a>
     <div>
       <h5><i [hidden]="!this.showDelete()" class="fa fa-trash float-right"
              (click)="this.deleteComment()"></i></h5>
