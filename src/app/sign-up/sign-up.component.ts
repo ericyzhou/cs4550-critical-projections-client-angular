@@ -43,7 +43,7 @@ export class SignUpComponent implements OnInit {
   }
 
   createUser = () => {
-    this.userService.createUser(0, this.username, this.password, this.email, this.role, '')
+    this.userService.createUser(0, this.username, this.password, this.email, this.role, 'https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg')
       .then(response => console.log(response));
     this.router.navigate(['/login'])
       .then(response => console.log(response));
