@@ -8,7 +8,8 @@
         <button [hidden]="!this.showEditAndDelete()" class="btn btn-danger float-right btn-sm"
                 (click)="this.deleteReview()">Delete</button>
         <button [hidden]="!this.showEditAndDelete()" class="btn btn-success float-right btn-sm"
-                (click)="this.editReview()">Edit</button></h3>
+                (click)="this.editReview()">Edit</button>
+        <i [hidden]="!this.review.criticReview" class="fa fa-star float-right" style="color: gold"></i></h3>
       <h5 class="mt-0 mb-1">{{review.title}}</h5>
       {{this.review.body}}
     </div>
