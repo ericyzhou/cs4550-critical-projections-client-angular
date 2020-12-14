@@ -19,6 +19,9 @@ import { CommentComponent } from './comment/comment.component';
 import { ProfileSettingsSectionComponent } from './profile-settings-section/profile-settings-section.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import {UserService} from '../services/user-service';
+import { ProfileReviewsSectionComponent } from './profile-reviews-section/profile-reviews-section.component';
+import { ProfileCommentsSectionComponent } from './profile-comments-section/profile-comments-section.component';
+import { ProfileNotASectionComponent } from './profile-not-a-section/profile-not-a-section.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import {UserService} from '../services/user-service';
     ReviewMediaComponent,
     CommentComponent,
     ProfileSettingsSectionComponent,
-    SignUpComponent
+    ProfileCommentsSectionComponent,
+    ProfileReviewsSectionComponent,
+    SignUpComponent,
+    ProfileNotASectionComponent
   ],
   imports: [
     BrowserModule,
