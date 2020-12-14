@@ -27,6 +27,8 @@ export class HomePageComponent implements OnInit {
       this.searchMovie();
     }
   }
+  
+  getBestUserReviews
 
   ngOnInit(): void {
     this.userLoggedIn = false;
