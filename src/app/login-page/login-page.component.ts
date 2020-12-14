@@ -40,7 +40,7 @@ export class LoginPageComponent implements OnInit {
     if (serviceResponse.response === 0) {
       this.invalidPasswordNotification = true;
     } else {
-      this.router.navigate([`/profile/${this.username}`])
+      this.router.navigate([''])
         .then(response => console.log(response));
     }
   }

@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 
-const loginUrl = 'https://critical-projections-server.herokuapp.com/api/login'; // 'http://localhost:8080/api/login'
-const url =  'https://critical-projections-server.herokuapp.com/api/users'; // 'http://localhost:8080/api/users';
-const urlValidate = 'https://critical-projections-server.herokuapp.com/api/validate'; // 'http://localhost:8080/api/validate';
-const urlLoggedIn = 'https://critical-projections-server.herokuapp.com/api/curuser'; // 'http://localhost:8080/api/curuser';
-const urlOutLog = 'https://critical-projections-server.herokuapp.com/api/logout'; // 'http://localhost:8080/api/logout';
+const loginUrl = 'https://critical-projections-server.herokuapp.com/api/login';
+const url = 'https://critical-projections-server.herokuapp.com/api/users';
+const urlValidate = 'https://critical-projections-server.herokuapp.com/api/validate';
+const urlLoggedIn = 'https://critical-projections-server.herokuapp.com/api/curuser';
+const urlOutLog = 'https://critical-projections-server.herokuapp.com/api/logout';
 
 @Injectable()
 export class UserService {
@@ -58,8 +58,8 @@ export class UserService {
     })
       .then(response => response.json())
 
-  updateUser = (username: string, user: any) =>
-    fetch(`${url}/${username}`, {
+  updateUser = (userId: number, user: any) =>
+    fetch(`${url}/${userId}`, {
       method: 'PUT',
       body: JSON.stringify(user),
       headers: {
@@ -68,8 +68,8 @@ export class UserService {
     })
       .then(response => response.json())
 
-  deleteUser = (username: string) =>
-    fetch(`${url}/${username}`, {
+  deleteUser = (userId: number) =>
+    fetch(`${url}/${userId}`, {
       method: 'DELETE'
     })
       .then(response => response.json())

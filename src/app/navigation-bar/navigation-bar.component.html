@@ -1,0 +1,36 @@
+<div class="topbar">
+  <div class="d-flex justify-content-between">
+    <h1 class="align-self-center"><a class="topbar-logo" routerLink="">Critical Projections</a></h1>
+    <div class="align-self-center">
+      <a class="btn btn-outline-primary"
+         [hidden]="userLoggedIn"
+         routerLink="/login"
+         type="button">
+        Sign in
+      </a>
+
+      <a class="btn btn-outline-primary"
+         [hidden]="!userLoggedIn"
+         routerLink="/profile/{{this.currentUser.id}}/settings"
+         type="button">
+        Profile
+      </a>
+      <button class="btn btn-outline-danger"
+              [hidden]="!userLoggedIn"
+              (click)="logout()"
+              type="button">
+        Logout
+      </button>
+<!--      <div class="dropdown"-->
+<!--           [hidden]="!userLoggedIn">-->
+<!--        <button class="btn btn-primary dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--          Account-->
+<!--        </button>-->
+<!--        <ul class="dropdown-menu" aria-labelledby="profileDropdown">-->
+<!--          <li><a class="dropdown-item" routerLink="/profile/{{this.currentUser.id}}">Profile</a></li>-->
+<!--          <li><a class="dropdown-item">Logout</a></li>-->
+<!--        </ul>-->
+<!--      </div>-->
+    </div>
+  </div>
+</div>

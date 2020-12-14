@@ -1,0 +1,10 @@
+.topbar {
+  background-color: whitesmoke;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.topbar-logo {
+  text-decoration: none;
+  color: black;
+}
