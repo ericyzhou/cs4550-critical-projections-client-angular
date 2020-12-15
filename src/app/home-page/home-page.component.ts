@@ -47,16 +47,19 @@ export class HomePageComponent implements OnInit {
         if (response.response === 1) {
           this.userLoggedIn = true;
           this.currentUser = response.user;
+          this.reviewService.fetchReviewsForUser(response.user.id)
+            .then(reviews => {
+              this.topUserReviews = reviews;
+              console.log(reviews);
+            });
+          this.commentService.fetchCommentsForUser(response.user.id)
+            .then(comments => this.topUserComments = comments);
         } else {
           this.userLoggedIn = false;
           this.currentUser = {id: 0, username: '', password: '', email: '', role: '', profilePic: ''};
         }});
     this.reviewService.fetchReviews(5)
       .then(topFive => this.topReviews = topFive);
-    this.reviewService.fetchReviewsForUser(this.currentUser.id)
-      .then(response => this.topUserReviews = response);
-    this.commentService.fetchCommentsForUser(this.currentUser.id)
-      .then(response => this.topUserComments = response);
   }
 
 }

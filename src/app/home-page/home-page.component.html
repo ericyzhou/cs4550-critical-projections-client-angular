@@ -20,14 +20,13 @@
         </div>
       </div>
     </div>
-    <div class="row" style="padding-top: 10px">
-      <span [hidden]="!this.userLoggedIn">
+    <div [hidden]="!this.userLoggedIn" class="row" style="padding-top: 10px">
         <div class="col-md-8 home-layout-cube">
           <div class="">
             <h3>Your hottest reviews</h3>
             <div class="list-group">
               <div *ngFor="let review of this.topUserReviews; let i = index">
-                <span [hidden]="i < 5">
+                <span [hidden]="i > 5">
                   <app-review-media [review]=review></app-review-media>
                 </span>
               </div>
@@ -38,15 +37,14 @@
           <div class="">
             <h3>Your hottest comments</h3>
             <div class="list-group">
-              <div *ngFor="let comment of this.topUserComments ; let i = index">
-                <span [hidden]="i < 5">
+              <div *ngFor="let comment of this.topUserComments; let i = index">
+                <span [hidden]="i > 5">
                   <app-comment [comment]="comment"></app-comment>
                 </span>
               </div>
             </div>
           </div>
         </div>
-      </span>
     </div>
     <div class="row" style="padding-top: 10px">
       <div class="col-12 col-md-12 home-layout-cube">
