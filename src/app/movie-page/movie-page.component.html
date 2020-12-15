@@ -74,6 +74,6 @@
     <ul class="list-unstyled">
       <app-review-media (deleteEvent)="this.reload()" *ngFor="let review of this.reviews" [review] = review></app-review-media>
     </ul>
-    <a routerLink="/search/movies/{{movie.imdbID}}/reviews" >See more</a>
+    <h2><a routerLink="/search/movies/{{movie.imdbID}}/reviews" >See more</a></h2>
   </div>
 </div>
