@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ReviewService} from '../../services/review-service';
 import {UserService} from '../../services/user-service';
+import {CommentService} from '../../services/comment-service';
 
 @Component({
   selector: 'app-profile-reviews-section',
@@ -15,6 +16,7 @@ export class ProfileReviewsSectionComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private reviewService: ReviewService,
+              private commentService: CommentService,
               private userService: UserService) { }
 
   ngOnInit(): void {
