@@ -39,6 +39,8 @@ export class ProfilePageComponent implements OnInit {
           default:
             this.switchToError();
         }
+      } else {
+        this.switchToSettings();
       }
     });
   }
