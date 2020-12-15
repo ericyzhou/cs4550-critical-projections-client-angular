@@ -9,7 +9,7 @@ export class ReviewService {
       .then(response => response.json())
 
   fetchReviews = (count: number) =>
-    fetch(`/reviews/${count}`)
+    fetch(`${url}/reviews/${count}`)
       .then(response => response.json())
 
   fetchCriticReviewsForMovie = (mid: any, count: number) =>
