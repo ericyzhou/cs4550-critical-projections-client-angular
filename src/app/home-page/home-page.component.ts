@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user-service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ReviewService} from '../../services/review-service';
 import {CommentService} from '../../services/comment-service';
 
@@ -21,6 +21,7 @@ export class HomePageComponent implements OnInit {
   constructor(private userService: UserService,
               private reviewService: ReviewService,
               private commentService: CommentService,
+              private activatedRouter: ActivatedRoute,
               private router: Router) { }
 
   searchMovie = () => {
