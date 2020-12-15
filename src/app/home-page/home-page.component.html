@@ -21,28 +21,33 @@
       </div>
     </div>
     <div class="row" style="padding-top: 10px">
-      <div class="col-md-8 home-layout-cube">
-        <div class="">
-          <h3>Your hottest reviews</h3>
-          <div class="list-group">
-            <app-review-media *ngFor="let review of this.getTopN(this.topUserReviews, 5)" [review] = review></app-review-media>
+      <span [hidden]="!this.userLoggedIn">
+        <div class="col-md-8 home-layout-cube">
+          <div class="">
+            <h3>Your hottest reviews</h3>
+            <div class="list-group">
+              <app-review-media *ngFor="let review of this.getTopN(this.topUserReviews, 5)"
+                              [review]=review></app-review-media>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-6 col-md-4 home-layout-cube">
-        <div class="">
-          <h3>Your hottest comments</h3>
-          <div class="list-group">
-            <app-comment *ngFor="let comment of this.getTopN(this.topUserComments, 5)" [comment]="comment"></app-comment>
+        <div class="col-6 col-md-4 home-layout-cube">
+          <div class="">
+            <h3>Your hottest comments</h3>
+            <div class="list-group">
+              <app-comment *ngFor="let comment of this.getTopN(this.topUserComments, 5)"
+                         [comment]="comment"></app-comment>
+            </div>
           </div>
         </div>
-      </div>
+      </span>
     </div>
     <div class="row" style="padding-top: 10px">
       <div class="col-12 col-md-12 home-layout-cube">
         <h3>Hottest Global Reviews</h3>
         <div class="list-group">
-          <app-review-media *ngFor="let review of this.topReviews" [review] = review></app-review-media>
+          <app-review-media *ngFor="let review of this.topReviews"
+                            [review]=review></app-review-media>
         </div>
       </div>
     </div>
