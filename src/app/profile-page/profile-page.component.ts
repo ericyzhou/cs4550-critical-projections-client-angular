@@ -10,10 +10,10 @@ import {UserService} from '../../services/user-service';
 export class ProfilePageComponent implements OnInit {
 
   settings = true;
-   reviews = true;
-   comments = true;
-   error = false;
-   userId = '';
+  reviews = true;
+  comments = true;
+  error = false;
+  userId = '';
 
   constructor(private activatedRoute: ActivatedRoute,
               private userService: UserService) { }
@@ -26,12 +26,12 @@ export class ProfilePageComponent implements OnInit {
       } else {
         this.userService.getCurrentUser()
           .then(response => {
-            if (response.response === 1) {
-              this.userId = response.user.id;
-            }});
+            this.userId = response.user.id;
+          });
       }
       const tab = params.tab;
       if (typeof tab !== 'undefined') {
+        console.log(tab);
         switch (tab) {
           case 'settings':
             this.switchToSettings();

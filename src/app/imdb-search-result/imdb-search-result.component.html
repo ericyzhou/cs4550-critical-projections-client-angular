@@ -14,7 +14,11 @@
           <tbody>
           <tr *ngFor="let result of results.Search">
             <td>
-              <img class="result-image" [src]="result.Poster" style="width: 100px; height: 160px"/>
+              <a routerLink="/search/movies/{{result.imdbID}}">
+                <img class="result-image"
+                     [src]="result.Poster"
+                     style="width: 100px; height: 160px"/>
+              </a>
             </td>
             <td>
               <a routerLink="/search/movies/{{result.imdbID}}">

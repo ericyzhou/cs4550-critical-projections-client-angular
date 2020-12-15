@@ -50,6 +50,10 @@ export class ProfileSettingsSectionComponent implements OnInit {
       if (typeof userId !== 'undefined') {
         this.userService.getUserById(userId)
           .then(pageUser => this.user = pageUser);
+      } else {
+        console.log("undefined");
+        this.userService.getCurrentUser()
+          .then(pageUser => this.user = pageUser.user);
       }
     });
     this.userService.getCurrentUser()
