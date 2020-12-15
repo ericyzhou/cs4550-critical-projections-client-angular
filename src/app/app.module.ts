@@ -23,6 +23,7 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { ProfileReviewsSectionComponent } from './profile-reviews-section/profile-reviews-section.component';
 import { ProfileCommentsSectionComponent } from './profile-comments-section/profile-comments-section.component';
 import { ProfileNotASectionComponent } from './profile-not-a-section/profile-not-a-section.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ProfileNotASectionComponent } from './profile-not-a-section/profile-not
     ProfileCommentsSectionComponent,
     ProfileReviewsSectionComponent,
     SignUpComponent,
-    ProfileNotASectionComponent
+    ProfileNotASectionComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

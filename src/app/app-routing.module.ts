@@ -7,6 +7,7 @@ import {HomePageComponent} from './home-page/home-page.component';
 import {LoginPageComponent} from './login-page/login-page.component';
 import {ProfilePageComponent} from './profile-page/profile-page.component';
 import {SignUpComponent} from './sign-up/sign-up.component';
+import {ProfileComponent} from './profile/profile.component';
 
 const routes: Routes = [
   {path: 'search/movies/:movieId', component: MoviePageComponent},
@@ -16,6 +17,8 @@ const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'login', component: LoginPageComponent},
   {path: 'signup', component: SignUpComponent},
+  {path: 'profile', component: ProfileComponent},
+  {path: 'profile/:userId/', component: ProfilePageComponent},
   {path: 'profile/:userId/:tab', component: ProfilePageComponent}
 ];
 

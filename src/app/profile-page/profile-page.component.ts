@@ -23,6 +23,12 @@ export class ProfilePageComponent implements OnInit {
       const userId = params.userId;
       if (typeof userId !== 'undefined') {
         this.userId = userId;
+      } else {
+        this.userService.getCurrentUser()
+          .then(response => {
+            if (response.response === 1) {
+              this.userId = response.user.id;
+            }});
       }
       const tab = params.tab;
       if (typeof tab !== 'undefined') {
@@ -39,6 +45,8 @@ export class ProfilePageComponent implements OnInit {
           default:
             this.switchToError();
         }
+      } else {
+        this.switchToSettings();
       }
     });
   }
