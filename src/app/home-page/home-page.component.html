@@ -26,8 +26,11 @@
           <div class="">
             <h3>Your hottest reviews</h3>
             <div class="list-group">
-              <app-review-media *ngFor="let review of this.getTopN(this.topUserReviews, 5)"
-                              [review]=review></app-review-media>
+              <div *ngFor="let review of this.topUserReviews; let i = index">
+                <span [hidden]="i < 5">
+                  <app-review-media [review]=review></app-review-media>
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -35,8 +38,11 @@
           <div class="">
             <h3>Your hottest comments</h3>
             <div class="list-group">
-              <app-comment *ngFor="let comment of this.getTopN(this.topUserComments, 5)"
-                         [comment]="comment"></app-comment>
+              <div *ngFor="let comment of this.topUserComments ; let i = index">
+                <span [hidden]="i < 5">
+                  <app-comment [comment]="comment"></app-comment>
+                </span>
+              </div>
             </div>
           </div>
         </div>
