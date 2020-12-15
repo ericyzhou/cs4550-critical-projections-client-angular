@@ -43,7 +43,7 @@ export class ProfilePageComponent implements OnInit {
             this.switchToComments();
             break;
           default:
-            this.switchToError();
+            this.switchToSettings();
         }
       } else {
         this.switchToSettings();
