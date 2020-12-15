@@ -15,10 +15,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getCurrentUser()
       .then(response => {
-        if (response.response === 1) {
-          this.router.navigate([`/profile/${response.user.id}/settings`]);
-        } else {
-          this.router.navigate([`/signup`]);
+        if (response.response === 0) {
+          this.router.navigate(['']);
         }});
   }
 
