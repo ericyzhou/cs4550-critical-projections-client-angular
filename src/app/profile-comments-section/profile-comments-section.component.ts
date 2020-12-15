@@ -11,12 +11,17 @@ import {CommentService} from '../../services/comment-service';
 })
 export class ProfileCommentsSectionComponent implements OnInit {
 
-  user = {username: ''};
+  user = {id: 0, username: ''};
   comments = [];
 
   constructor(private activatedRoute: ActivatedRoute,
               private commentService: CommentService,
               private userService: UserService) { }
+
+  reload = () => {
+    this.commentService.fetchCommentsForUser(this.user.id)
+      .then(comments => this.comments = comments);
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {

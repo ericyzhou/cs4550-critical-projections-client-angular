@@ -11,6 +11,7 @@ export class ProfileSettingsSectionComponent implements OnInit {
 
   user = {id: 0, username: 'temp', password: '1234', email: '1324@5678.com', role: '', profilePic: ''};
   currentUser = {id: 0, username: '', password: '', email: '', role: '', profilePic: ''};
+  editingPicture = false;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -20,6 +21,15 @@ export class ProfileSettingsSectionComponent implements OnInit {
   // false -> owner, true -> not owner
   isProfileOwner = () => {
     return !(this.user.id === this.currentUser.id);
+  }
+
+  toggleEditingOn = () => {
+    this.editingPicture = true;
+  }
+
+  toggleEditingOff = () => {
+    this.editingPicture = false;
+    this.updateProfile();
   }
 
   updateProfile = () => {
